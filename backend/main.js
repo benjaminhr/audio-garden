@@ -15,8 +15,11 @@ app.use((_, res, next) => {
 });
 
 app.post("/analyse", async (request, response) => {
-  const imageDescriptions = request.body.descriptions;
+  if (!request.body.descriptions || request.body.descriptions.length === 0) {
+    response.status(400).send("Error");
+  }
 
+  const imageDescriptions = request.body.descriptions;
   const prompt = createPrompt(imageDescriptions);
   const chatResponse = await getStoryFromGPT(prompt);
   const audioBuffer = await textToSpeech(chatResponse);

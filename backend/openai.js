@@ -31,10 +31,6 @@ async function textToSpeech(textInput) {
       input: textInput,
     });
 
-    if (fs.existsSync(outputFile)) {
-      fs.unlinkSync(outputFile);
-    }
-
     const buffer = Buffer.from(await mp3.arrayBuffer());
     console.log("Speech synthesis complete.");
     return buffer;
