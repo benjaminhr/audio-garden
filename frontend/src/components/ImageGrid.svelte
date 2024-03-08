@@ -70,6 +70,8 @@
 	:global(body) {
 		overflow: hidden;
 		user-select: none;
+		margin: 0;
+		padding: 0;
 	}
 
 	.images {
