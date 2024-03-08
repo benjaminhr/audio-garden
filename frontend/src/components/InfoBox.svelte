@@ -1,41 +1,9 @@
 <script>
 	import { goto } from '$app/navigation';
-	import { imageStore } from '../stores/images.js';
 
 	export let showNextPageButton = false;
-
-	async function sendImageDescriptions() {
-		console.log($imageStore);
-		console.log();
-		const imageDescriptions = $imageStore.map((imageObj) => {
-			if (imageObj.description) {
-				return imageObj.description;
-			} else {
-				return imageObj.slug;
-			}
-		});
-
-		const requestBody = { descriptions: imageDescriptions };
-
-		const response = await fetch('http://localhost:8080/analyse', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify(requestBody)
-		});
-
-		if (response.ok) {
-			const responseData = await response.text();
-			console.log(responseData);
-		} else {
-			console.error('Error in API request:', response.statusText);
-		}
-	}
-
 	const onDoneClick = async () => {
-		await sendImageDescriptions();
-		// goto('/analyse');
+		goto('/analyse');
 	};
 </script>
 

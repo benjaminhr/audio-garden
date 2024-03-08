@@ -21,9 +21,8 @@ app.post("/analyse", async (request, response) => {
   const chatResponse = await getStoryFromGPT(prompt);
   const audioBuffer = await textToSpeech(chatResponse);
 
-  // response.set("Content-Type", "audio/mpeg");
-  // response.send(audioBuffer);
-  response.send("ok");
+  response.set("Content-Type", "audio/mpeg");
+  response.send(audioBuffer);
 });
 
 const port = process.env.PORT || 8080;

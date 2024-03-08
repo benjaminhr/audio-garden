@@ -1,5 +1,3 @@
-const fs = require("fs");
-const path = require("path");
 const OpenAI = require("openai");
 require("dotenv").config();
 
@@ -25,8 +23,6 @@ function createPrompt(descriptions) {
 }
 
 async function textToSpeech(textInput) {
-  const outputFile = path.resolve("./output.mp3");
-
   try {
     console.log("Speech synthesis initializing.");
     const mp3 = await openai.audio.speech.create({
@@ -40,8 +36,8 @@ async function textToSpeech(textInput) {
     }
 
     const buffer = Buffer.from(await mp3.arrayBuffer());
-    await fs.promises.writeFile(outputFile, buffer);
     console.log("Speech synthesis complete.");
+    return buffer;
   } catch (error) {
     console.log("Speech synthesis failed.");
     console.error(error);
