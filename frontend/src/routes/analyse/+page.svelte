@@ -48,12 +48,16 @@
 			</div>
 		{:else}
 			<div class="loading">
-				<p>Creating your audio garden</p>
-				<img src="sparkle.png" alt="" />
+				<p class="loading-text">Creating your audio garden</p>
+				<img class="loading-img" src="sparkle.png" alt="" />
 			</div>
 		{/if}
 	</main>
-	<div class="half-background"></div>
+	{#if audioSrc}
+		<div class="half-background-loaded"></div>
+	{:else}
+		<div class="half-background-loading"></div>
+	{/if}
 </div>
 
 <style>
@@ -69,12 +73,45 @@
 		height: 100vh;
 	}
 
-	.half-background {
+	.loading-text {
+		animation: pulsate 2s infinite ease-in-out;
+	}
+
+	.loading-img {
+		animation: pulsate 2s infinite ease-in-out;
+	}
+
+	@keyframes pulsate {
+		0% {
+			transform: scale(1);
+			opacity: 1;
+		}
+		50% {
+			transform: scale(1.01);
+			opacity: 0.5;
+		}
+		100% {
+			transform: scale(1);
+			opacity: 1;
+		}
+	}
+
+	.half-background-loading {
 		position: absolute;
 		bottom: 0;
 		height: 50vh;
 		width: 100%;
 		background-image: url('water.jpg');
+		background-size: cover;
+		background-position: center;
+	}
+
+	.half-background-loaded {
+		position: absolute;
+		bottom: 0;
+		height: 50vh;
+		width: 100%;
+		background-image: url('bg-2.png');
 		background-size: cover;
 		background-position: center;
 	}
