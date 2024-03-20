@@ -33,6 +33,7 @@
 	.infoBox p {
 		font-family: Arial, Helvetica, sans-serif;
 		font-weight: bold;
+		max-width: 80%;
 	}
 
 	.nextPageButton:disabled {
