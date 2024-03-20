@@ -18,7 +18,7 @@ async function getStoryFromGPT(content) {
 
 function createPrompt(descriptions) {
   const imageDescriptions = descriptions.join("\n");
-  const prompt = `Using the following descriptions of garden images, create a short story which should be creative, calm, peaceful, and meditative.\n${imageDescriptions}`;
+  const prompt = `Using the following descriptions of garden images, create a short story which should be creative, calm, peaceful, and meditative. Write roughly 300 words.\n${imageDescriptions}`;
   return prompt;
 }
 
