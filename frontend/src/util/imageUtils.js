@@ -32,7 +32,7 @@ function getImages(searchTerm) {
 }
 
 async function getImageUrls() {
-	const searchTerms = ['garden', 'sandy garden', 'fluffy textures', 'cabin'];
+	const searchTerms = ['garden', 'fluffy textures', 'cabin'];
 	const promises = searchTerms.map(getImages);
 	const images = await Promise.all(promises);
 	const uniqueImages = images.flat().reduce((acc, image) => {

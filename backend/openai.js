@@ -10,7 +10,6 @@ async function getStoryFromGPT(content) {
     model: "gpt-3.5-turbo",
     messages: [{ role: "user", content }],
     temperature: 0,
-    max_tokens: 100,
   });
 
   return response.choices[0].message.content;
@@ -18,7 +17,7 @@ async function getStoryFromGPT(content) {
 
 function createPrompt(descriptions) {
   const imageDescriptions = descriptions.join("\n");
-  const prompt = `Using the following descriptions of garden images, create a short story which should be creative, calm, peaceful, and meditative. Write roughly 600 words.\n${imageDescriptions}`;
+  const prompt = `Using the following descriptions of garden images, create a short story which should be creative, calm, peaceful, and meditative. Write roughly 350 words.\n${imageDescriptions}`;
   return prompt;
 }
 
