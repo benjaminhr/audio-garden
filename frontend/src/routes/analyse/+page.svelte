@@ -19,7 +19,10 @@
 
 		const requestBody = { descriptions: imageDescriptions };
 
-		const response = await fetch('http://localhost:8080/analyse', {
+		const url = window.location.host.includes('localhost')
+			? 'http://localhost:8080/analyse'
+			: 'https://audio-garden-backend.onrender.com/analyse';
+		const response = await fetch(url, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
