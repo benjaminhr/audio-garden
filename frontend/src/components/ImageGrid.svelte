@@ -13,8 +13,8 @@
 		images = shuffle(await getImageUrls());
 		images = images.map((image) => ({ ...image, selected: false }));
 
-		// const nthChild = Math.round(images.length / 3);
-		const nthChild = 9;
+		const nthChild = Math.round(images.length / 3);
+		// const nthChild = 9;
 		images.splice(nthChild, 0, { isInfoBox: true });
 		infoBoxInjected = true;
 	});
