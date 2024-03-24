@@ -14,8 +14,8 @@ app.use((_, res, next) => {
   next();
 });
 
-app.get("/healthz", (_, __) => {
-  res.send("wohoo");
+app.get("/healthz", (_, response) => {
+  response.send("wohoo");
 });
 
 app.post("/analyse", async (request, response) => {
