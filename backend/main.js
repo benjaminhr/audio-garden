@@ -14,6 +14,10 @@ app.use((_, res, next) => {
   next();
 });
 
+app.get("/healthz", (_, __) => {
+  res.send("wohoo");
+});
+
 app.post("/analyse", async (request, response) => {
   if (!request.body.descriptions || request.body.descriptions.length === 0) {
     return response.status(400).send("Error");
