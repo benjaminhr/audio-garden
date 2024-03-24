@@ -7,14 +7,11 @@ function shuffle(array) {
 	return array;
 }
 
-function getImageUrls() {
-	const searchTerm = 'gardens';
+function getImages(searchTerm) {
 	const UNSPLASH_ACCESS_KEY = 'SBrPUgoNaYq2WdmrErTfWSOkFxtcaR29WegUj7WYJmA';
-	const totalPages = 5;
-	const perPage = 30;
-	const randomPage = Math.floor(Math.random() * totalPages) + 1;
+	const perPage = 10;
 
-	const endpoint = `https://api.unsplash.com/search/photos?query=${searchTerm}&client_id=${UNSPLASH_ACCESS_KEY}&per_page=${perPage}&page=${randomPage}`;
+	const endpoint = `https://api.unsplash.com/photos/random?query=${searchTerm}&client_id=${UNSPLASH_ACCESS_KEY}&count=${perPage}`;
 
 	return fetch(endpoint)
 		.then((response) => {
@@ -29,9 +26,23 @@ function getImageUrls() {
 				return;
 			}
 
-			return data.results;
+			return data;
 		})
 		.catch(() => alert('An error occured!'));
+}
+
+async function getImageUrls() {
+	const searchTerms = ['garden', 'sandy garden', 'fluffy textures', 'cabin'];
+	const promises = searchTerms.map(getImages);
+	const images = await Promise.all(promises);
+	const uniqueImages = images.flat().reduce((acc, image) => {
+		if (!acc.some((accImage) => accImage.id === image.id)) {
+			acc.push(image);
+		}
+		return acc;
+	}, []);
+
+	return uniqueImages;
 }
 
 export { shuffle, getImageUrls };
