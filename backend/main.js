@@ -16,7 +16,7 @@ app.use((_, res, next) => {
 
 app.post("/analyse", async (request, response) => {
   if (!request.body.descriptions || request.body.descriptions.length === 0) {
-    response.status(400).send("Error");
+    return response.status(400).send("Error");
   }
 
   const imageDescriptions = request.body.descriptions;
